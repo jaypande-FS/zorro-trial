@@ -1,0 +1,58 @@
+<div class="container">
+<nz-steps [nzCurrent]="pageNum"  >
+  <nz-step nzTitle="Detail"></nz-step>
+  <nz-step nzTitle="Address"></nz-step>
+  <nz-step nzTitle="Feedback"></nz-step>
+</nz-steps>
+
+<div class="steps-content" >
+  <div [ngSwitch]="pageNum">
+  <ng-template [ngSwitchCase]=0>
+<app-details [dataForm]="forms" >
+
+</app-details>
+  </ng-template >
+  <ng-template [ngSwitchCase]=1>
+<app-address [addForm]="forms">
+
+</app-address>
+  </ng-template >
+  <ng-template [ngSwitchCase]=2>
+    <app-feedback [feedform]="forms"></app-feedback>
+  </ng-template >
+</div>
+</div>
+
+  <button nz-button nzType="default" (click)="pre()" *ngIf="pageNum > 0">
+    <span>Previous</span>
+  </button>
+  <button nz-button nzType="default" (click)="next()" *ngIf="pageNum < 2">
+    <span>Next</span>
+  </button>
+  <button nz-button nzType="primary" (click)="done()" *ngIf="pageNum === 2">
+    <span>Submit</span>
+  </button>
+
+</div>
+<div class="container">
+<nz-table #basicTable [nzData]="form_data">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Address</th>
+      <th>Nationality</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.name}}</td>
+      <td>{{data.age}}</td>
+      <td>{{data.country}}</td>
+      <td>{{data.nationality}}</td>
+      
+    </tr>
+  </tbody>
+</nz-table>
+</div>
